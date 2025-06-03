@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_starter_cli/create_folder_structure.dart';
+import 'package:flutter_starter_cli/flutter_starter_cli.dart';
 import 'package:prompts/prompts.dart' as prompts;
 
 void main(List<String> arguments) async {
