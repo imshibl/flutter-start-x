@@ -10,7 +10,6 @@ environment:
 executables:
   flutter_starter_cli:
 
-# Add regular dependencies here.
 dependencies:
   path: ^1.9.1
   args: ^2.7.0
