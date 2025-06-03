@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_starter_cli/flutter_starter_cli.dart';
+import 'package:flutter_starter_x/flutter_starter_x.dart';
 import 'package:prompts/prompts.dart' as prompts;
 
 void main(List<String> arguments) async {
