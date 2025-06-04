@@ -88,5 +88,14 @@ void main(List<String> arguments) async {
   // Step 7: Create folders
   createFolderStructure(projectPath, selectedStructure!);
 
+  //Step 8: remove comments in main.dart
+  final removeComments = prompts.getBool(
+    '🧹 Remove boilerplate comments from main.dart',
+    defaultsTo: true,
+  );
+  if (removeComments) {
+    await removeMainDartComments(projectPath);
+  }
+
   print('\n✅ Project "$projectName" setup complete!');
 }

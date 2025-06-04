@@ -19,11 +19,40 @@ void createFolderStructure(String path, String type) {
       final features = ['auth', 'home'];
       for (final feature in features) {
         final basePath = '${libDir.path}/features/$feature';
-        Directory(
-          '$basePath/models/${feature}_model.dart',
-        ).createSync(recursive: true);
-        Directory('$basePath/services').createSync(recursive: true);
-        Directory('$basePath/views').createSync(recursive: true);
+        final modelsDir = Directory('$basePath/models');
+        final servicesDir = Directory('$basePath/services');
+        final viewsDir = Directory('$basePath/views');
+
+        modelsDir.createSync(recursive: true);
+        servicesDir.createSync(recursive: true);
+        viewsDir.createSync(recursive: true);
+
+        // ✅ Create default auth_model.dart only in 'auth' feature
+        if (feature == 'auth') {
+          final authModelFile = File('${modelsDir.path}/auth_model.dart');
+          authModelFile.writeAsStringSync('''
+class AuthModel {
+  final String email;
+  final String token;
+
+  AuthModel({required this.email, required this.token});
+
+  factory AuthModel.fromJson(Map<String, dynamic> json) {
+    return AuthModel(
+      email: json['email'] ?? '',
+      token: json['token'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'email': email,
+      'token': token,
+    };
+  }
+}
+''');
+        }
       }
       print(
         '📁 Created feature-based structure with models, services, views + common folders',
@@ -36,5 +65,18 @@ void createFolderStructure(String path, String type) {
       Directory('${libDir.path}/presentation').createSync(recursive: true);
       print('📁 Created clean architecture structure + common folders');
       break;
+  }
+}
+
+Future<void> removeMainDartComments(String projectPath) async {
+  final mainFile = File('$projectPath/lib/main.dart');
+  if (await mainFile.exists()) {
+    String content = await mainFile.readAsString();
+
+    // Remove both single-line (//) and multi-line (/* */) comments
+    final cleaned = content.replaceAll(RegExp(r'//.*'), '');
+    // .replaceAll(RegExp(r'/\*[\s\S]*?\*/'), '');
+
+    await mainFile.writeAsString(cleaned);
   }
 }
