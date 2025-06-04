@@ -14,13 +14,13 @@ void main(List<String> arguments) async {
   }
 
   // Step 2: Ask for org
-  String org = prompts.get(
+  final org = prompts.get(
     '🏢 Enter your organization (default: com.example):',
+    defaultsTo: 'com.example',
   );
   if (org.trim().isEmpty) {
     // stderr.writeln('❌ Organization name cannot be empty.');
     // exit(1);
-    org = 'com.example';
   }
 
   // Step 3: flutter create
