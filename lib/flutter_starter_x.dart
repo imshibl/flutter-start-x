@@ -1,22 +1,26 @@
 import 'dart:io';
 
+import 'package:flutter_starter_x/consts/models/auth_model.dart';
+
 void createFolderStructure(String path, String type) {
   final libDir = Directory('$path/lib');
 
   // Always create common folders
-  final commonDirs = ['utils', 'config', 'widgets', 'constants'];
+  final commonDirs = ['utils', 'config', 'widgets'];
   for (final dir in commonDirs) {
     Directory('${libDir.path}/$dir').createSync(recursive: true);
   }
 
   switch (type) {
     case 'default':
+      Directory('${libDir.path}/models').createSync(recursive: true);
+      Directory('${libDir.path}/services').createSync(recursive: true);
       Directory('${libDir.path}/views').createSync(recursive: true);
       print('📁 Created default structure: lib/views + common folders');
       break;
 
     case 'feature-based':
-      final features = ['auth', 'home'];
+      final features = ['auth'];
       for (final feature in features) {
         final basePath = '${libDir.path}/features/$feature';
         final modelsDir = Directory('$basePath/models');
@@ -30,28 +34,7 @@ void createFolderStructure(String path, String type) {
         // ✅ Create default auth_model.dart only in 'auth' feature
         if (feature == 'auth') {
           final authModelFile = File('${modelsDir.path}/auth_model.dart');
-          authModelFile.writeAsStringSync('''
-class AuthModel {
-  final String email;
-  final String token;
-
-  AuthModel({required this.email, required this.token});
-
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
-      email: json['email'] ?? '',
-      token: json['token'] ?? '',
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'email': email,
-      'token': token,
-    };
-  }
-}
-''');
+          authModelFile.writeAsStringSync(authModel);
         }
       }
       print(
