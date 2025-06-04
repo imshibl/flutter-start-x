@@ -10,16 +10,18 @@ void createFolderStructure(String path, String type) {
   }
 
   switch (type) {
-    case 'flat':
-      Directory('${libDir.path}/pages').createSync(recursive: true);
-      print('📁 Created flat structure: lib/pages + common folders');
+    case 'default':
+      Directory('${libDir.path}/views').createSync(recursive: true);
+      print('📁 Created default structure: lib/views + common folders');
       break;
 
     case 'feature-based':
       final features = ['auth', 'home'];
       for (final feature in features) {
         final basePath = '${libDir.path}/features/$feature';
-        Directory('$basePath/models').createSync(recursive: true);
+        Directory(
+          '$basePath/models/${feature}_model.dart',
+        ).createSync(recursive: true);
         Directory('$basePath/services').createSync(recursive: true);
         Directory('$basePath/views').createSync(recursive: true);
       }

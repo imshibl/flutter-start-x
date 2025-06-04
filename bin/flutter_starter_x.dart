@@ -4,7 +4,7 @@ import 'package:flutter_starter_x/flutter_starter_x.dart';
 import 'package:prompts/prompts.dart' as prompts;
 
 void main(List<String> arguments) async {
-  print('🛠️ Flutter Starter CLI Tool');
+  print('🛠️ Flutter Starter X CLI Tool');
 
   // Step 1: Ask for project name
   final projectName = prompts.get('🚀 Enter your project name:');
@@ -14,10 +14,13 @@ void main(List<String> arguments) async {
   }
 
   // Step 2: Ask for org
-  final org = prompts.get('🏢 Enter your organization (e.g., com.peoplane):');
+  String org = prompts.get(
+    '🏢 Enter your organization (default: com.example):',
+  );
   if (org.trim().isEmpty) {
-    stderr.writeln('❌ Organization name cannot be empty.');
-    exit(1);
+    // stderr.writeln('❌ Organization name cannot be empty.');
+    // exit(1);
+    org = 'com.example';
   }
 
   // Step 3: flutter create
@@ -43,13 +46,13 @@ void main(List<String> arguments) async {
   // Step 4: Choose packages
   final availablePackages = <String>[
     'dio',
+    'http',
     'shared_preferences',
+    'hive',
     'flutter_bloc',
     'equatable',
     'provider',
     'riverpod',
-    'hive',
-    'http',
     'path_provider',
     'get_it',
   ];
@@ -62,7 +65,7 @@ void main(List<String> arguments) async {
   }
 
   // Step 5: Choose folder structure
-  final folderStructures = ['flat', 'feature-based', 'clean'];
+  final folderStructures = ['default', 'feature-based', 'clean'];
   final selectedStructure = prompts.choose(
     '🧱 Choose folder structure:',
     folderStructures,
