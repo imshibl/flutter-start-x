@@ -8,11 +8,9 @@ environment:
 
 
 executables:
-  flutter_starter_x:
+  flutter-starter-x: bin/flutter_starter_x.dart
 
 dependencies:
-  path: ^1.9.1
-  args: ^2.7.0
   prompts: ^2.0.0
 
 dev_dependencies:
