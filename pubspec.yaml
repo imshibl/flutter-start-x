@@ -8,7 +8,7 @@ environment:
 
 
 executables:
-  flutter-starter-x: flutter_starter_x
+  flutter_starter_x:
 
 dependencies:
   prompts: ^2.0.0
