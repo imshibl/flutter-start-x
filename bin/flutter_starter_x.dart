@@ -18,10 +18,10 @@ void main(List<String> arguments) async {
     '🏢 Enter your organization (default: com.example):',
     defaultsTo: 'com.example',
   );
-  if (org.trim().isEmpty) {
-    // stderr.writeln('❌ Organization name cannot be empty.');
-    // exit(1);
-  }
+  // if (org.trim().isEmpty) {
+  //   // stderr.writeln('❌ Organization name cannot be empty.');
+  //   // exit(1);
+  // }
 
   // Step 3: flutter create
   print('\n📦 Creating Flutter project...');
@@ -67,7 +67,7 @@ void main(List<String> arguments) async {
   );
 
   if (selectedPackages.isNotEmpty) {
-    stderr.writeln(selectedPackages);
+    stderr.writeln("Selected packages: $selectedPackages");
   }
 
   // print('\n📦 Select packages to install:');
