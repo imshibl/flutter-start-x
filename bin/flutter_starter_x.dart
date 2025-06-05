@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_starter_x/flutter_starter_x.dart';
-import 'package:prompts/prompts.dart' as prompts;
+import 'package:flutter_starter_x/prompts/prompts.dart' as prompts;
 
 void main(List<String> arguments) async {
   print('🛠️ Flutter Starter X CLI Tool');
@@ -18,10 +18,10 @@ void main(List<String> arguments) async {
     '🏢 Enter your organization (default: com.example):',
     defaultsTo: 'com.example',
   );
-  if (org.trim().isEmpty) {
-    // stderr.writeln('❌ Organization name cannot be empty.');
-    // exit(1);
-  }
+  // if (org.trim().isEmpty) {
+  //   // stderr.writeln('❌ Organization name cannot be empty.');
+  //   // exit(1);
+  // }
 
   // Step 3: flutter create
   print('\n📦 Creating Flutter project...');
@@ -45,27 +45,39 @@ void main(List<String> arguments) async {
 
   // Step 4: Choose packages
   final availablePackages = <String>[
+    'go_router',
+    'auto_route',
     'dio',
     'http',
     'shared_preferences',
+    'flutter_secure_storage',
     'hive',
-    'flutter_bloc',
-    'equatable',
-    'provider',
-    'riverpod',
-    'path_provider',
-    'get_it',
+    'sqflite',
+    'flutter_svg',
+    'cached_network_image',
+    'image_picker',
+    'permission_handler',
+    'url_launcher',
+    'intl',
   ];
 
-  final selectedPackages = <String>[];
-  print('\n📦 Select packages to install:');
-  for (final pkg in availablePackages) {
-    final include = prompts.getBool('➕ Add $pkg?', defaultsTo: false);
-    if (include) selectedPackages.add(pkg);
+  final selectedPackages = prompts.multiChoose(
+    "📦 Select packages to install:",
+    availablePackages,
+  );
+
+  if (selectedPackages.isNotEmpty) {
+    stderr.writeln("Selected packages: $selectedPackages");
   }
 
+  // print('\n📦 Select packages to install:');
+  // for (final pkg in availablePackages) {
+  //   final include = prompts.getBool('➕ Add $pkg?', defaultsTo: false);
+  //   if (include) selectedPackages.add(pkg);
+  // }
+
   // Step 5: Choose folder structure
-  final folderStructures = ['default', 'feature-based', 'clean'];
+  final folderStructures = ['default', 'feature-based'];
   final selectedStructure = prompts.choose(
     '🧱 Choose folder structure:',
     folderStructures,

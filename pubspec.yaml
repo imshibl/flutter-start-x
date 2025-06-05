@@ -1,17 +1,20 @@
 name: flutter_starter_x
 description: A CLI tool to bootstrap Flutter projects with packages, folder structures, etc.
-version: 1.0.1
-repository: https://github.com/imshibl/flutter_starter_x
+version: 1.0.3
+repository: https://github.com/imshibl/flutter-start-x
+
 
 environment:
   sdk: ^3.7.2
 
 
 executables:
-  flutter-starter-x: flutter_starter_x
+  flutter-start-x: flutter_starter_x
 
 dependencies:
-  prompts: ^2.0.0
+  charcode: ^1.4.0
+  io: ^1.0.5
+  
 
 dev_dependencies:
   lints: ^5.0.0
