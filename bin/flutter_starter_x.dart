@@ -45,27 +45,39 @@ void main(List<String> arguments) async {
 
   // Step 4: Choose packages
   final availablePackages = <String>[
+    'go_router',
+    'auto_route',
     'dio',
     'http',
     'shared_preferences',
+    'flutter_secure_storage',
     'hive',
-    'flutter_bloc',
-    'equatable',
-    'provider',
-    'riverpod',
-    'path_provider',
-    'get_it',
+    'sqflite',
+    'flutter_svg',
+    'cached_network_image',
+    'image_picker',
+    'permission_handler',
+    'url_launcher',
+    'intl',
   ];
 
-  final selectedPackages = <String>[];
-  print('\n📦 Select packages to install:');
-  for (final pkg in availablePackages) {
-    final include = prompts.getBool('➕ Add $pkg?', defaultsTo: false);
-    if (include) selectedPackages.add(pkg);
+  final selectedPackages = prompts.multiChoose(
+    "📦 Select packages to install:",
+    availablePackages,
+  );
+
+  if (selectedPackages.isNotEmpty) {
+    stderr.writeln(selectedPackages);
   }
 
+  // print('\n📦 Select packages to install:');
+  // for (final pkg in availablePackages) {
+  //   final include = prompts.getBool('➕ Add $pkg?', defaultsTo: false);
+  //   if (include) selectedPackages.add(pkg);
+  // }
+
   // Step 5: Choose folder structure
-  final folderStructures = ['default', 'feature-based', 'clean'];
+  final folderStructures = ['default', 'feature-based'];
   final selectedStructure = prompts.choose(
     '🧱 Choose folder structure:',
     folderStructures,

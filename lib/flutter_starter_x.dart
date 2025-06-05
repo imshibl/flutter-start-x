@@ -1,14 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter_starter_x/consts/models/auth_model.dart';
+import 'package:flutter_starter_x/consts/services/auth_services.dart';
 
 void createFolderStructure(String path, String type) {
   final libDir = Directory('$path/lib');
 
   // Always create common folders
-  final commonDirs = ['utils', 'config', 'widgets'];
+  final commonDirs = ['utils', 'config', 'common'];
   for (final dir in commonDirs) {
     Directory('${libDir.path}/$dir').createSync(recursive: true);
+
+    if (dir == 'common') {
+      Directory('${libDir.path}/$dir/widgets').createSync(recursive: true);
+      Directory('${libDir.path}/$dir/models').createSync(recursive: true);
+      Directory('${libDir.path}/$dir/services').createSync(recursive: true);
+    }
   }
 
   switch (type) {
@@ -36,18 +43,26 @@ void createFolderStructure(String path, String type) {
           final authModelFile = File('${modelsDir.path}/auth_model.dart');
           authModelFile.writeAsStringSync(authModel);
         }
+
+        // ✅ Create default auth_services.dart only in 'auth' feature
+        if (feature == 'auth') {
+          final authServicesFile = File(
+            '${servicesDir.path}/auth_services.dart',
+          );
+          authServicesFile.writeAsStringSync(authServices);
+        }
       }
       print(
         '📁 Created feature-based structure with models, services, views + common folders',
       );
       break;
 
-    case 'clean':
-      Directory('${libDir.path}/data').createSync(recursive: true);
-      Directory('${libDir.path}/domain').createSync(recursive: true);
-      Directory('${libDir.path}/presentation').createSync(recursive: true);
-      print('📁 Created clean architecture structure + common folders');
-      break;
+    // case 'clean':
+    //   Directory('${libDir.path}/data').createSync(recursive: true);
+    //   Directory('${libDir.path}/domain').createSync(recursive: true);
+    //   Directory('${libDir.path}/presentation').createSync(recursive: true);
+    //   print('📁 Created clean architecture structure + common folders');
+    //   break;
   }
 }
 
