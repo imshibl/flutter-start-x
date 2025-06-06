@@ -76,5 +76,3 @@ You can start working on the project by running:
 cd myapp
 flutter run
 ```
-
-```
