@@ -15,6 +15,10 @@ A simple and minimal Dart CLI tool to quickly generate Flutter apps, saving your
   - `feature-based` (organised by features)
 - 🔥 Cleans up `main.dart` by removing default boilerplate comments
 
+
+### Demo
+<img src="https://raw.githubusercontent.com/imshibl/flutter-start-x/main/example/demo.gif" alt="MasterHead" width="1000" height="450"/>
+
 ## ⚡ Getting Started
 
 1. Activate the package globally:
