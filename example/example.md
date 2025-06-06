@@ -13,6 +13,10 @@ This terminal session demonstrates creating a new Flutter project using the Flut
 $ flutter-start-x
 ````
 
+
+### Demo
+<img src="https://raw.githubusercontent.com/imshibl/flutter-start-x/main/example/demo.gif" alt="MasterHead" width="1000" height="450"/>
+
 #### Prompts:
 
 * **Project Name**: `myapp`
