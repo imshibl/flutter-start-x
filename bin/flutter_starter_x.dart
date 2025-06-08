@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_starter_x/flutter_starter_x.dart';
-import 'package:flutter_starter_x/prompts/prompts.dart' as prompts;
+import 'package:promptr/promptr.dart' as prompts;
 
 void main(List<String> arguments) async {
   print('🛠️ Flutter Starter X CLI Tool');

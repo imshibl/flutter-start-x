@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.1.2"
   charcode:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: charcode
       sha256: fb0f1107cac15a5ea6ef0a6ef71a807b9e4267c713bb93e00e92d737cc8dbd8a
@@ -138,7 +138,7 @@ packages:
     source: hosted
     version: "4.1.2"
   io:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: io
       sha256: dfd5a80599cf0165756e3181807ed3e77daf6dd4137caaad72d0b7931597650b
@@ -233,6 +233,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  promptr:
+    dependency: "direct main"
+    description:
+      name: promptr
+      sha256: "0fab44dacc620016cbb812fd76a0542816011f966130c55dacfa9dd3bd97c423"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   pub_semver:
     dependency: transitive
     description:
